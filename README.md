@@ -9,7 +9,7 @@ A web-based digital clearance platform for universities, built with **React** an
 <details>
   <summary>Click to Expand Screenshots</summary>
 
-### 🔐 Landing Page  
+### 🏠 Landing Page  
 ![Landing](./src/assets/screenshots/dscs-welcome-page.PNG)
 
 ### 🔐 Login Page  
@@ -24,7 +24,7 @@ A web-based digital clearance platform for universities, built with **React** an
 ### 📁 Document Upload  
 ![Upload](./src/assets/screenshots/dscs-student-upload.PNG)
 
-### 🧑‍🏫 Staff Page  
+### 💼 Staff Page 
 ![Staff](./src/assets/screenshots/dscs-staff-page.PNG)
 
 ### 🔍 Staff Details  

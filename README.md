@@ -6,29 +6,34 @@ A web-based digital clearance platform for universities, built with **React** an
 
 ## 📸 Screenshots
 
-### 🔐 Landing Page
+<details>
+  <summary>Click to Expand Screenshots</summary>
+
+### 🔐 Landing Page  
 ![Landing](./src/assets/screenshots/dscs-welcome-page.PNG)
 
-### 🔐 Login Page
+### 🔐 Login Page  
 ![Login](./src/assets/screenshots/dscs-login-page.PNG)
 
-### 🧾 Student Page
+### 🧾 Student Page  
 ![Student](./src/assets/screenshots/dscs-student-page.PNG)
 
-### 📤 Student Clearance
+### ✅ Student Clearance  
 ![Clearance](./src/assets/screenshots/dscs-myclearance-page.PNG)
 
-### 📤 Document Upload
+### 📁 Document Upload  
 ![Upload](./src/assets/screenshots/dscs-student-upload.PNG)
 
-### 📤 Staff Page
+### 🧑‍🏫 Staff Page  
 ![Staff](./src/assets/screenshots/dscs-staff-page.PNG)
 
-### 📤 Staff Details
+### 🔍 Staff Details  
 ![Staff Details](./src/assets/screenshots/dscs-staffdetails-page.PNG)
 
-### 📤 Admin Page
+### ⚙️ Admin Page  
 ![Admin](./src/assets/screenshots/dscs_admin_page.PNG)
+
+</details>
 
 ---
 ## 🚀 Features

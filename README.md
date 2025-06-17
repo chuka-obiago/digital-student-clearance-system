@@ -52,7 +52,7 @@ A web-based digital clearance platform for universities, built with **React** an
 - **Frontend:** React + TypeScript
 - **Backend (BaaS):** Firebase (Auth, Firestore)
 - **File Storage:** Cloudinary
-- **Styling:** Tailwind CSS (optional)
+- **Styling:** Tailwind CSS 
 - **State Management:** React Hooks, Context API 
 
 ---

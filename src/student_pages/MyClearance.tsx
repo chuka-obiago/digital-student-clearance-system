@@ -23,7 +23,7 @@ import MyNavbar from '../components/MyNavbar';
 // Firebase imports
 import { auth, db } from '../lib/firebase';
 import { onAuthStateChanged, type User } from 'firebase/auth';
-import { doc, getDoc, setDoc, collection, getDocs } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 // Cloudinary imports
 import { uploadToCloudinary } from '../lib/cloudinary';

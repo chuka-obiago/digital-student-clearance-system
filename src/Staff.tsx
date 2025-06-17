@@ -1,14 +1,11 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   User as LucideUser, 
-  LogOut,
-  X,
-  CheckCircle2,
-  Clock,
-  FileText,
-  AlertCircle,
-  Loader2,
+  LogOut, X, FileText, Loader2,
+  // CheckCircle2,
+  // Clock,
+  // AlertCircle,
 } from 'lucide-react'; 
 import LogoImage from './assets/images/caleblogo.png'; 
 import UploadPhoto from './components/UploadPhoto'; 
@@ -110,7 +107,7 @@ const Staff = () => {
   // Fetches documents relevant to the staff's department
   const fetchDocumentsForStaff = useCallback(async (staffDepartment: string) => {
     setLoadingDocuments(true);
-    const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+    // appId is not needed here as clearance_documents is a root collection
     const fetchedDocs: Document[] = [];
 
     console.log(`[Fetch Docs] Querying collection group: 'clearance_documents' for department: '${staffDepartment}'`);
@@ -151,6 +148,7 @@ const Staff = () => {
       setLoadingInitialData(true);
       if (user) {
         setFirebaseUser(user);
+        // Declaring appId here where it is used
         const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
         const userDocRef = doc(db, `artifacts/${appId}/users/${user.uid}/user_details`, user.uid);
 
@@ -219,7 +217,7 @@ const Staff = () => {
   }, [fetchDocumentsForStaff, navigate]); // fetchDocumentsForStaff is a dependency
 
   // Handles updating document status (Accept/Reject)
-  const handleDocumentStatusUpdate = async (docId: string, studentId: string, department: string, newStatus: 'Approved' | 'Rejected') => {
+  const handleDocumentStatusUpdate = async (docId: string, _studentId: string, _department: string, newStatus: 'Approved' | 'Rejected') => {
     setUpdatingDocumentStatus(prev => ({ ...prev, [docId]: true }));
     setIsMessageModalOpen(false); // Close any existing messages
 
@@ -309,7 +307,7 @@ const Staff = () => {
         return <span className="font-semibold text-red-600">REJECTED</span>;
       case 'Pending':
         return <span className="font-semibold text-yellow-600">PENDING</span>;
-      case 'Not Submitted': 
+      case 'Not Submitted':
       default:
         return <span className="font-semibold text-gray-600">NOT SUBMITTED</span>;
     }

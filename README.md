@@ -62,7 +62,7 @@ A web-based digital clearance platform for universities, built with **React** an
 ```bash
 # Clone the repository
 git clone https://github.com/chuka-obiago/digital-student-clearance-system.git
-cd your-repo-name
+cd digital-student-clearance-system
 
 # Install dependencies
 npm install

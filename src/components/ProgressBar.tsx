@@ -2,18 +2,10 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { onAuthStateChanged, type User } from 'firebase/auth';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../lib/firebase'; 
-import { Loader2 } from 'lucide-react'; 
+import { Loader2 } from 'lucide-react';
 
-// Declare __app_id globally 
+// Declare __app_id globally
 declare const __app_id: string | undefined;
-
-// Interface for Firestore document data for type safety
-interface ClearanceDocument {
-  id: string; // The document ID from Firestore
-  studentId: string;
-  department: string;
-  status: 'Approved' | 'Rejected' | 'Pending' | 'Not Submitted';
-}
 
 // Your provided ProgressBar component
 interface ProgressBarProps {

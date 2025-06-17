@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { X, Upload, Loader2 } from 'lucide-react';
-import { doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { onAuthStateChanged } from 'firebase/auth';
 import type { User } from 'firebase/auth';
 import { auth, db } from '../lib/firebase';

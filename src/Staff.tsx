@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  User as LucideUser, // Rename to avoid conflict with Firebase 'User' type
+  User as LucideUser, 
   LogOut,
   X,
   CheckCircle2,
@@ -9,24 +9,18 @@ import {
   FileText,
   AlertCircle,
   Loader2,
-} from 'lucide-react'; // Import necessary Lucide icons
-// IMPORTANT: YOU MUST VERIFY AND ADJUST THESE IMPORT PATHS FOR YOUR PROJECT!
-// If Staff.tsx is in a subdirectory (e.g., 'src/pages/'), and 'assets/', 'components/', 'lib/' are in 'src/',
-// then '../assets/images/caleblogo.png' is likely correct.
-// If Staff.tsx is directly in 'src/', then './assets/images/caleblogo.png' might be correct.
-// Please check your actual folder structure and update these paths accordingly.
-import LogoImage from './assets/images/caleblogo.png'; // <--- CHECK AND ADJUST THIS PATH BASED ON YOUR FILE STRUCTURE
-import UploadPhoto from './components/UploadPhoto'; // <--- CHECK AND ADJUST THIS PATH BASED ON YOUR FILE STRUCTURE
+} from 'lucide-react'; 
+import LogoImage from './assets/images/caleblogo.png'; 
+import UploadPhoto from './components/UploadPhoto'; 
 
 // Firebase imports
-import { auth, db } from './lib/firebase'; // <--- CHECK AND ADJUST THIS PATH BASED ON YOUR FILE STRUCTURE
+import { auth, db } from './lib/firebase'; 
 import { onAuthStateChanged, signOut, type User } from 'firebase/auth';
 import { doc, getDoc, updateDoc, collectionGroup, query, where, getDocs } from 'firebase/firestore';
 
-// Declare __app_id globally for TypeScript to recognize it.
+// Declare __app_id globally 
 declare const __app_id: string | undefined;
 
-// Type definitions
 
 // Interface for the actual data fields stored within a Firestore document
 interface FirestoreDocumentData {
@@ -35,8 +29,8 @@ interface FirestoreDocumentData {
   department: string; // The department the document belongs to (e.g., 'Academic Affairs', 'Library')
   fileUrl: string;
   status: DocumentStatus;
-  uploadedAt: string; // ISO string
-  cloudinaryPublicId: string; // To potentially link to Cloudinary for staff actions if needed
+  uploadedAt: string; 
+  cloudinaryPublicId: string; 
 }
 
 // Full Document interface, combining Firestore data with the document ID
@@ -50,12 +44,11 @@ interface Document extends FirestoreDocumentData {
 interface StaffProfileData {
   fullName: string;
   email: string;
-  department: string; // e.g., 'Academic Affairs' or 'library' - ensure this matches the department titles
-  userType: 'student' | 'staff' | 'admin'; // Changed 'role' to 'userType' to match Firestore data
-  // Add other profile fields if you have them, like photoUrl from UploadPhoto
+  department: string; // e.g., 'Academic Affairs' or 'library' 
+  userType: 'student' | 'staff' | 'admin'; 
 }
 
-// Custom Message Modal Component (re-using the pattern from other pages)
+// Custom Message Modal Component 
 interface MessageModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -123,7 +116,6 @@ const Staff = () => {
     console.log(`[Fetch Docs] Querying collection group: 'clearance_documents' for department: '${staffDepartment}'`);
 
     try {
-      // Adjusted collectionGroup name to 'clearance_documents' to match your Firestore data structure
       const documentsRef = collectionGroup(db, 'clearance_documents');
       const q = query(documentsRef, where('department', '==', staffDepartment));
       const querySnapshot = await getDocs(q);
@@ -150,7 +142,7 @@ const Staff = () => {
     } finally {
       setLoadingDocuments(false);
     }
-  }, []); // No dependencies as db reference and collectionGroup are stable
+  }, []); 
 
 
   // Effect to listen for Firebase Auth state changes and fetch staff profile/documents
@@ -231,8 +223,6 @@ const Staff = () => {
     setUpdatingDocumentStatus(prev => ({ ...prev, [docId]: true }));
     setIsMessageModalOpen(false); // Close any existing messages
 
-    // Corrected the document reference path to target the top-level 'clearance_documents' collection directly.
-    // The docId (e.g., "Tx3ms5PXpggLMcMbtpfjAJXdoRp2_Academic_Affairs") is the full ID of the document to update.
     const documentRef = doc(db, 'clearance_documents', docId);
 
     try {
@@ -240,7 +230,7 @@ const Staff = () => {
         status: newStatus,
       });
 
-      // Optimistically update local state to reflect the change immediately
+      // Update local state to reflect the change immediately
       setDocuments((prevDocs) =>
         prevDocs.map((docItem) =>
           // Updated comparison to use docItem.id for consistency with updateDoc
@@ -301,7 +291,6 @@ const Staff = () => {
 
   // Fallback if no staff user is logged in or profile not found/authorized
   if (!firebaseUser || !staffProfile) {
-    // The useEffect already handles navigation to /login, but this provides a visual fallback.
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 font-inter text-gray-800 p-4 text-center">
         <h2 className="text-3xl font-bold text-red-600 mb-4">Access Denied</h2>
@@ -320,7 +309,7 @@ const Staff = () => {
         return <span className="font-semibold text-red-600">REJECTED</span>;
       case 'Pending':
         return <span className="font-semibold text-yellow-600">PENDING</span>;
-      case 'Not Submitted': // Although staff should only see submitted docs, this handles edge cases
+      case 'Not Submitted': 
       default:
         return <span className="font-semibold text-gray-600">NOT SUBMITTED</span>;
     }

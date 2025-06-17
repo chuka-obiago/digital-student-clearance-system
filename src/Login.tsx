@@ -7,7 +7,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 
 
-// Declare __app_id globally for TypeScript to recognize it.
+// Declare __app_id globally
 declare const __app_id: string | undefined;
 
 // Custom Message Modal Component
